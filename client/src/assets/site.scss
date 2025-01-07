@@ -1,0 +1,48 @@
+html,
+body,
+#app {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    font-family: Segoe WPC, Segoe UI, sans-serif;
+    font-size: var(--el-font-size-base);
+    line-height: 1.4em;
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: var(--mm-color-body-primary);
+    color: var(--mm-color-text-primary);
+}
+
+@media (min-width: 1930px) {
+
+    html,
+    body,
+    #app {
+        font-size: 28px;
+    }
+
+    .el-text,
+    .el-menu-item {
+        font-size: 28px;
+    }
+}
+
+/* 滚动条 ********************************/
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+    background-clip: padding-box;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ccc;
+}

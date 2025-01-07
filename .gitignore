@@ -1,0 +1,10 @@
+server/server.exe
+server/server
+server/logs
+server/files/
+server/web/
+client/soft/
+server
+client/auto-imports.d.ts
+client/components.d.ts
+client/package-lock.json

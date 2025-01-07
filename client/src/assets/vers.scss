@@ -1,0 +1,82 @@
+:root {
+
+    --mm-color-primary: rgb(19, 180, 151);
+    --mm-color-primary-10: rgba(19, 180, 151, 0.1);
+    --mm-color-primary-20: rgba(19, 180, 151, 0.2);
+    --mm-color-primary-30: rgba(19, 180, 151, 0.3);
+    --mm-color-primary-40: rgba(19, 180, 151, 0.4);
+    --mm-color-primary-50: rgba(19, 180, 151, 0.5);
+    --mm-color-primary-60: rgba(19, 180, 151, 0.6);
+    --mm-color-primary-80: rgba(19, 180, 151, 0.8);
+    --mm-color-danger: rgb(245, 108, 108);
+    --mm-color-danger-20: rgba(245, 108, 108, 0.2);
+    --mm-color-danger-30: rgba(245, 108, 108, 0.3);
+    --mm-color-danger-50: rgba(245, 108, 108, 0.5);
+    --mm-color-warning: rgb(230, 162, 60);
+    --mm-color-warning-20: rgba(230, 162, 60, 0.2);
+    --mm-color-warning-50: rgba(230, 162, 60, 0.5);
+    --mm-color-success: rgb(103, 194, 58);
+    --mm-color-success-20: rgba(103, 194, 58, 0.2);
+    --mm-color-success-50: rgba(103, 194, 58, 0.5);
+
+    --mm-color-disabled: rgba(22, 21, 21, 0.9);
+
+    --mm-color-body-primary: rgb(7, 20, 17);
+    --mm-color-body-primary-50: rgba(21, 58, 51, 0.5);
+    --mm-color-body-primary-90: rgba(21, 58, 51, 0.9);
+    --mm-color-body-secondary: #202427;
+
+    --mm-color-text-primary: #edf0f3;
+    --mm-color-text-secondary: rgba(211, 216, 223, 0.8);
+    --mm-color-text-thrid: #fff;
+    --mm-color-text-four: #6a6d70;
+
+    --mm-size-text-primary: 15px;
+
+    --mm-primary-boxshow: 0 1px 4px rgba(19, 180, 151, 0.1);
+    --mm-secondary-boxshow: 0 0px 2px rgba(200, 200, 200, 0.2);
+
+    --mm-primary-hoveBackground: rgba(90, 93, 94, 0.31);
+    --mm-primary-hoveForeground: #cccccc;
+
+    --mm-color-border-primary: rgba(52, 110, 101, 0.15);
+    --mm-color-border-secondary: #323940;
+
+    --mm-loading-background: rgba(0, 0, 0, 0.7);
+
+    --mm-primary-listFocusColor: rgba(0, 0, 0, 0.2);
+    --mm-primary-listHoverColor: rgba(0, 0, 0, 0.3);
+
+    --mm-color-dialog-shadow: 0px 0px 3px 0px var(--mm-color-primary);
+
+}
+
+
+:root {
+    --el-color-primary: var(--mm-color-primary);
+    --el-text-color-primary: var(--mm-color-text-primary) !important;
+
+    --el-border-color: rgba(80, 80, 80, 0.4);
+
+    --el-fill-color-blank: #1c2126 !important;
+    --el-border: 1px solid var(--el-border-color) !important;
+    --el-border-color-hover: rgba(80, 80, 80, 0.6);
+
+    --el-fill-color-light: var(--mm-primary-listHoverColor) !important;
+
+    --el-box-shadow-light: var(--mm-primary-boxshow) !important;
+
+    --el-bg-color: var(--mm-color-body-primary);
+    --el-bg-color-overlay: var(--mm-color-body-primary);
+    --el-border-color-lighter: var(--mm-primary-borderColor);
+
+    --el-text-color-disabled: rgba(120, 120, 120, 0.8) !important;
+    --el-text-color-regular: #fff !important;
+
+    --el-disabled-bg-color: rgba(120, 120, 120, 0.2) !important;
+}
+
+
+:focus-visible {
+    outline: none !important;
+}
