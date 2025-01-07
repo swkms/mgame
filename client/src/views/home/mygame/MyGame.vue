@@ -455,11 +455,11 @@ const selectedOpenGame = ref<Game>()
 function openGameClosed() {
     currentPage = CurrentPage.MAIN
     visiableStartGame.value = false
+    console.log("openGameClosed")
 }
 
 function openGameOpened() {
     currentPage =CurrentPage.OPENGAMECONFIRM
-    visiableStartGame.value = false
 }
 
 function cancelOpenGame() {
@@ -467,6 +467,7 @@ function cancelOpenGame() {
 }
 
 function confirmOpenGame() {
+    visiableStartGame.value = false
     if (selectedOpenGame.value) {
         const command = path.basename(selectedOpenGame.value.APP);
         const args = [];
