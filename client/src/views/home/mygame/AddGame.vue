@@ -1,14 +1,15 @@
 <template>
-    <div style="height:560px;display: flex;flex-direction: column;overflow: hidden;">
+    <div style="height:570px;display: flex;flex-direction: column;overflow: hidden;">
         <div style="display: flex;justify-content: center;align-items: center;flex:1">
-            <el-form ref="formElement" style="width:400px" label-width="100px" :model="model" :rules="rules">
+            <el-form ref="formElement" style="width:400px" label-width="100px" :model="model" :rules="rules"
+                label-position="top">
                 <el-form-item label="游戏名称" prop="Name">
                     <el-input v-model="model.Name" autocomplete="new-password" />
                 </el-form-item>
                 <el-form-item label="游戏路径" prop="APP">
                     <div style="display: flex;width: 100%;">
                         <div style="flex:1">
-                            <el-input v-model="model.APP"></el-input>
+                            <el-input :disabled="true" v-model="model.APP"></el-input>
                         </div>
                         <div>
                             <el-button type="primary" style="margin-left: 5px;" @click="selectAPP">选择</el-button>
@@ -16,20 +17,10 @@
                     </div>
                 </el-form-item>
                 <el-form-item label="游戏封面" prop="Cover">
-                    <div style="display: flex;flex-direction: column;width: 100%;">
-                        <div style="display: flex;width: 100%;">
-                            <div style="flex:1">
-                                <el-input v-model="model.Cover"></el-input>
-                            </div>
-                            <div>
-                                <el-button type="primary" style="margin-left: 5px;" @click="selectFile">选择</el-button>
-                            </div>
-                        </div>
-                        <div
-                            style="flex:1;overflow: hidden;margin-top: 10px;display: flex;justify-content: center;align-items: center;">
-                            <el-image style="width:200px;height:266px" fit="cover"
-                                :src="alreadySelectedFile ? model.Cover : '/logo.jpg'"></el-image>
-                        </div>
+                    <div style="display: flex;justify-content: center;align-items: center;width: 100%;">
+                        <el-image @click="selectFile"
+                            style="width:380px;height:214px;border-radius: 5px;cursor: pointer;" fit="fill"
+                            :src="model.Cover"></el-image>
                     </div>
                 </el-form-item>
             </el-form>
@@ -67,7 +58,7 @@ let alreadySelectedFile = false
 function selectFile() {
     remote.dialog.showOpenDialog({
         filters: [
-            { name: 'Images', extensions: ['jpg', 'png'] }
+            { name: 'Images', extensions: ['jpg', 'png', 'webp'] }
         ]
     }).then(result => {
         if (result.filePaths && result.filePaths.length > 0) {
@@ -162,20 +153,15 @@ async function save() {
                 fs.copyFileSync(model.value.Cover, dstPath);
                 model.value.Cover = dstPath
             } catch (err) {
-                console.error('Error saving file:', err);
                 return
             }
         }
         if (model.value.GameID != 0) {
             await gameService.modifyGame(model.value)
         } else {
-            console.log("KKK11")
             await db.createGame(model.value)
-            console.log("KKK22")
         }
-        console.log("KKK1")
         emit('success', model.value)
-        console.log("KKK2")
     } catch (ex) {
         ElMessage.error('保存数据失败:' + ex)
     } finally {

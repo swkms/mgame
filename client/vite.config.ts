@@ -53,7 +53,7 @@ export default defineConfig({
   },
 
   build: {
-    outDir: '../server/web',
+    outDir: './electron/web',
     emptyOutDir: true,
     rollupOptions: {
       external: []

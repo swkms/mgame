@@ -11,21 +11,50 @@ body,
     line-height: 1.4em;
     -webkit-user-select: none;
     user-select: none;
-    background-color: var(--mm-color-body-primary);
+    background-color: black;
     color: var(--mm-color-text-primary);
 }
 
-@media (min-width: 1930px) {
+@media (min-width: 1921px) {
 
-    html,
-    body,
-    #app {
-        font-size: 28px;
+    .item_container_content_title {
+        height: 50px !important;
     }
 
-    .el-text,
-    .el-menu-item {
-        font-size: 28px;
+    :root {
+        --el-font-size-base: 18px !important;
+    }
+
+    .el-button {
+        width: 100px;
+        height: 40px;
+    }
+
+    .el-message-box{
+        --el-messagebox-width:600px;
+    }
+
+    .el-message-box__content{
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (min-width: 2561px) {
+
+    .item_container_content_title {
+        height: 50px !important;
+    }
+
+    :root {
+        --el-font-size-base: 18px !important;
+    }
+
+    .el-button {
+        width: 100px;
+        height: 40px;
     }
 }
 

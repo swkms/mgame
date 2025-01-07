@@ -91,7 +91,7 @@ routes.push({
 routes.push({
     path: '/',
     name: 'HOME_MAIN',
-    redirect: "/games",
+    redirect: "/mygame",
     component: () =>
         import(/* webpackChunkName: "HOME_MAIN" */ '../views/home/Main.vue'),
     children: [
@@ -100,9 +100,9 @@ routes.push({
             path: '/games',
             name: 'GAMES',
             component: () =>
-                import(/* webpackChunkName: "GAMES" */ '../views/home/Games.vue'),
+                import(/* webpackChunkName: "GAMES" */ '../views/home/game/Games.vue'),
             meta: {
-                title: '游戏库'
+                title: '游戏仓库'
             }
         },
         //我的游戏
@@ -110,7 +110,7 @@ routes.push({
             path: '/mygame',
             name: 'MYGAME',
             component: () =>
-                import(/* webpackChunkName: "MYGAME" */ '../views/home/MyGanme.vue'),
+                import(/* webpackChunkName: "MYGAME" */ '../views/home/mygame/MyGame.vue'),
             meta: {
                 title: '我的游戏'
             }
@@ -118,14 +118,14 @@ routes.push({
     ]
 })
 
-routes.push({
-    path: '/:pathMatch(.*)',
-    name: '404',
-    component: () => import(/* webpackChunkName: "404" */ '../views/error/404.vue'),
-})
+//routes.push({
+//    path: '/:pathMatch(.*)',
+//    name: '404',
+//    component: () => import(/* webpackChunkName: "404" */ '../views/error/404.vue'),
+//})
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes,
 })
 

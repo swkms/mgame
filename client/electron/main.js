@@ -22,12 +22,9 @@ function registerKey() {
 }
 
 app.whenReady().then(() => {
-  
   require('@electron/remote/main').initialize()
   createWindow("/", 640, 480, true)
   registerKey()
-
-
 })
 
 app.on('window-all-closed', function () {

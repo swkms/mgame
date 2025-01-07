@@ -376,6 +376,34 @@ input:-internal-autofill-selected {
 
 .el-button {
     border-radius: 3px;
+    --el-button-hover-bg-color: rgba(19, 180, 151, 0) !important;
+    --el-button-hover-border-color: rgba(255, 255, 255, 0.8) !important;
+    --el-button-active-bg-color: rgba(19, 180, 151, 0) !important;
+    --el-button-active-border-color: var(--mm-color-primary) !important;
+    --el-button-disabled-bg-color: rgba(255, 255, 255, 0) !important;
+    --el-button-disabled-border-color: rgba(255, 255, 255, 0.5) !important;
+    --el-button-bg-color: rgba(0, 0, 0, 0) !important;
+    box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5) inset;
+    --el-button-border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.el-button.is-circle {
+    box-shadow: 0px 0px 1px 0px var(--mm-color-primary-50) inset;
+}
+
+.el-button:hover {
+    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.8) inset;
+}
+
+.el-button.is-disabled,
+.el-button.is-disabled:hover {
+    box-shadow: 0px 0px 2px 0px var(--mm-color-primary-50) inset;
+    background-color: var(--mm-color-disabled);
+    border-color: var(--mm-color-primary-20);
+}
+
+.el-button:active {
+    box-shadow: 0px 0px 20px 0px var(--mm-color-primary) inset;
 }
 
 //primary
@@ -397,7 +425,7 @@ input:-internal-autofill-selected {
 }
 
 .el-button--primary:hover {
-    box-shadow: 0px 0px 15px 0px var(--mm-color-primary) inset;
+    box-shadow: 0px 0px 15px 0px var(--mm-color-primary) inset !important;
 }
 
 .el-button--primary.is-disabled,
@@ -426,7 +454,7 @@ input:-internal-autofill-selected {
 }
 
 .el-button--danger:hover {
-    box-shadow: 0px 0px 15px 0px var(--mm-color-danger) inset;
+    box-shadow: 0px 0px 15px 0px var(--mm-color-danger) inset !important;
 }
 
 .el-button--danger.is-disabled,
@@ -459,7 +487,7 @@ input:-internal-autofill-selected {
 }
 
 .el-button--warning:hover {
-    box-shadow: 0px 0px 15px 0px var(--mm-color-warning) inset;
+    box-shadow: 0px 0px 15px 0px var(--mm-color-warning) inset !important;
 }
 
 .el-button--warning.is-disabled,
@@ -492,7 +520,7 @@ input:-internal-autofill-selected {
 }
 
 .el-button--success:hover {
-    box-shadow: 0px 0px 15px 0px var(--mm-color-success) inset;
+    box-shadow: 0px 0px 15px 0px var(--mm-color-success) inset !important;
 }
 
 .el-button--success.is-disabled,
@@ -504,7 +532,7 @@ input:-internal-autofill-selected {
 }
 
 .el-button--success:active {
-    box-shadow: 0px 0px 20px 0px var(--mm-color-success) inset;
+    box-shadow: 0px 0px 20px 0px var(--mm-color-success) inset !important;
 }
 
 .el-input.is-disabled .el-input__wrapper {
@@ -603,7 +631,7 @@ input:-internal-autofill-selected {
 }
 
 .el-overlay {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--mm-loading-background);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
 }
@@ -611,4 +639,14 @@ input:-internal-autofill-selected {
 /* .el-progress-bar__outer *****************/
 .el-progress-bar__outer {
     background-color: var(--mm-color-border-secondary);
+}
+
+/* el-message-box__content ***********/
+
+.el-message-box__content {
+    height: 100px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -51,10 +51,19 @@ exports.createWindow = function (router, width, height, fullscreen = false) {
     })
     require("@electron/remote/main").enable(mainWindow.webContents)
     console.log('model', NODE_ENV, router)
+
+    /*
     mainWindow.loadURL(
         NODE_ENV === 'development'
-            ? 'http://10.8.0.66:5000' + router
+            ? 'http://127.0.0.1:5000' + router
             : 'http://10.8.0.66:5000' + router
+    );
+    */
+
+    mainWindow.loadURL(
+        NODE_ENV === 'development'
+            ? 'http://127.0.0.1:5000' + router
+            : `file://${path.join(__dirname, './web/index.html#') + router}`
     );
 
     mainWindow.once("ready-to-show", () => {

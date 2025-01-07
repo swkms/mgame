@@ -58,11 +58,16 @@ export class DB {
         });
     }
 
-    getGames(): Promise<Array<Game>> {
+    getGames(name: string): Promise<Array<Game>> {
         return new Promise((resolve, reject) => {
-            this.db.all("SELECT * FROM Games", [], (err, rows: Array<Game>) => {
+            let sql = `SELECT * FROM Games`
+            let params = new Array<string>()
+            if (name != "") {
+                sql += " where Name Like ?"
+                params.push('%'+name+'%')
+            }
+            this.db.all(sql, params, (err, rows: Array<Game>) => {
                 if (err) {
-                    console.error(err.message);
                     reject(err);
                 } else {
                     resolve(rows);
@@ -75,6 +80,20 @@ export class DB {
         return new Promise((resolve, reject) => {
             const sql = `INSERT INTO Games (Name,CreateTime,Cover,GameSort,APP) VALUES (?,?,?,?,?)`
             const params = [game.Name, new Date().getTimestamp(), game.Cover, game.GameSort, game.APP]
+            this.db.run(sql, params, (err) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(null)
+                }
+            })
+        });
+    }
+
+    removeGame(gameID: number) {
+        return new Promise((resolve, reject) => {
+            const sql = `DELETE FROM Games where GameID=?`
+            const params = [gameID]
             this.db.run(sql, params, (err) => {
                 if (err) {
                     reject(err)

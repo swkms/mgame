@@ -7,7 +7,7 @@
         <div class="option">
             <slot name="option"></slot>
         </div>
-        <el-space wrap :size="5">
+        <el-space wrap :size="5" class="menu_container">
             <div class="menu normal" @click="min" v-if="showMin">
                 <Minus></Minus>
             </div>
@@ -65,7 +65,7 @@ function min() {
 
 <style lang="scss">
 .window_bar {
-    height: 60px;
+    height: 50px;
     display: flex;
 
     .title {
@@ -78,26 +78,32 @@ function min() {
 
     >.option {
         flex: 1;
-       // -webkit-app-region: drag;
+        // -webkit-app-region: drag;
     }
 
-    .menu {
-        height: 30px;
-        width: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
+    .menu_container {
+        position: absolute;
+        right: 0px;
+        top: 0px;
 
-    .menu.close:hover {
-        background-color: var(--el-color-danger);
-        color: white;
-    }
+        .menu {
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
 
-    .menu.normal:hover {
-        background-color: rgba(200, 200, 200, 0.5);
-        color: white;
+        .menu.close:hover {
+            background-color: var(--el-color-danger);
+            color: white;
+        }
+
+        .menu.normal:hover {
+            background-color: rgba(200, 200, 200, 0.5);
+            color: white;
+        }
     }
 }
 </style>

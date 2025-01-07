@@ -8,7 +8,8 @@
     "serve": "concurrently -k \"npm run dev\" \"npm run electron\"",
     "build": "vite build && electron-builder",
     "postinstall": "install-app-deps",
-    "build-electron": "electron-builder"
+    "build-electron": "electron-builder",
+    "preview":"vite build && electron ."
   },
   "dependencies": {
     "@electron/remote": "^2.1.2",
