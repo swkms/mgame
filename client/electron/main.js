@@ -1,7 +1,7 @@
-const { app, globalShortcut, BrowserWindow,protocol } = require('electron')
+const { app, globalShortcut, BrowserWindow, shell  } = require('electron')
 require('./config')
 const { createWindow } = require('./window')
-
+const { exec, spawn, execFile } = require('child_process');
 
 function registerKey() {
   const isSuccess = globalShortcut.register('CommandOrControl+F12', () => {
@@ -25,6 +25,12 @@ app.whenReady().then(() => {
   require('@electron/remote/main').initialize()
   createWindow("/", 640, 480, true)
   registerKey()
+
+  const command = "G:\\Game\\FarCry4\\bin\\FarCry4.exe"
+  const dir = "G:\\Game\\FarCry4\\bin\\"
+
+  //shell.openExternal(command,{workingDirectory:dir})
+  //spawn(command, [], { cwd: dir, detached: true })
 })
 
 app.on('window-all-closed', function () {

@@ -1,6 +1,6 @@
 /* .el-popper *********/
 .el-popper {
-    outline: 1px solid var(--mm-secondary-borderColor) !important;
+    outline: px solid var(--mm-secondary-borderColor) !important;
     border-radius: 5px;
     border: none !important;
     background-color: var(--mm-color-body-primary-90) !important;
@@ -101,12 +101,12 @@
     border-radius: 5px;
     box-shadow: var(--mm-color-dialog-shadow);
     --el-dialog-padding-primary: 0px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .el-dialog__header {
     padding: 5px 10px;
-    background-color: var(--mm-color-primary-30);
+    background-color: var(--mm-color-primary-10);
 }
 
 .el-dialog__headerbtn {
@@ -117,7 +117,7 @@
 
 .el-dialog__body {
     padding: 10px;
-    background: var(--mm-color-primary-20);
+    //background: var(--mm-color-primary-10);
 }
 
 /* .el-tree ***********/

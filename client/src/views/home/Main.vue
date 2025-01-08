@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <WindowBarComponent :title="title" :show-icon="true" :show-max="false"
-            style="background-color: var(--mm-color-body-secondary);">
+       >
             <template v-slot:option>
                 <!--
             <div style="display: flex;justify-content: center;align-items: center;height: 100%;">
@@ -35,7 +35,7 @@ import { onMounted, onUnmounted } from "vue";
     .router {
         flex: 1;
         overflow: hidden;
-        padding: 20px;
+        padding: 0px 10px;
         box-sizing: border-box;
     }
 }

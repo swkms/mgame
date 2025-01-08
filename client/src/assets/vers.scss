@@ -24,7 +24,7 @@
     --mm-color-body-primary: rgb(7, 20, 17);
     --mm-color-body-primary-50: rgba(21, 58, 51, 0.5);
     --mm-color-body-primary-90: rgba(21, 58, 51, 0.9);
-    --mm-color-body-secondary: rgba(16,16,20,1);
+    --mm-color-body-secondary: rgba(16, 16, 20, 0.1);
 
     --mm-color-text-primary: #edf0f3;
     --mm-color-text-secondary: rgba(211, 216, 223, 0.8);
@@ -47,7 +47,7 @@
     --mm-primary-listFocusColor: rgba(0, 0, 0, 0.2);
     --mm-primary-listHoverColor: rgba(0, 0, 0, 0.3);
 
-    --mm-color-dialog-shadow: 0px 0px 3px 0px var(--mm-color-primary);
+    --mm-color-dialog-shadow: 0px 0px 5px 0px var(--mm-color-primary-40);
 
 }
 

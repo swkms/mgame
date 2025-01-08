@@ -31,9 +31,9 @@
                                     <Pic></Pic>
                                 </el-button>
                             </template>
-                            <dvi>
+                            <div>
                                 <el-image style="width:100%;height:100%" :src="'/files/' + scope.row.Cover"></el-image>
-                            </dvi>
+                            </div>
                         </el-popover>
                     </el-table-column>
                     <el-table-column #default="scope" label="修改" width="60" align="center" header-align="center">

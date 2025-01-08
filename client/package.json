@@ -1,6 +1,6 @@
 {
   "name": "mgame",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "electron/main.js",
   "scripts": {
     "dev": "vite",

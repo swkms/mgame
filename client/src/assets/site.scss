@@ -58,6 +58,22 @@ body,
     }
 }
 
+@media (min-width: 3500px) {
+
+    .item_container_content_title {
+        height: 50px !important;
+    }
+
+    :root {
+        --el-font-size-base: 24px !important;
+    }
+
+    .el-button {
+        width: 100px;
+        height: 40px;
+    }
+}
+
 /* 滚动条 ********************************/
 
 ::-webkit-scrollbar {

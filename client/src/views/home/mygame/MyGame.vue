@@ -1,17 +1,18 @@
 <template>
     <div class="module">
-        <div style="display: flex;padding: 10px;">
-            <el-space style="flex:1">
+        <div style="display: flex;padding: 0px 10px 10px 10px;">
+            <div style="flex:1">
+
+            </div>
+            <el-space>
                 <el-input v-model="searchContent" placeholder="游戏名称"></el-input>
                 <el-button type="primary" @click="getGames">查询</el-button>
-            </el-space>
-            <div>
                 <el-button type="primary" @click="addGame">添加</el-button>
-            </div>
+            </el-space>
         </div>
         <div class="container" ref="containerElement">
-            <div v-for="item in games" class="game_item">
-                <div ref="colElement" class="content" :class="item.IsSelected ? 'active' : ''">
+            <div v-for="item in games" class="game_item" ref="colElement">
+                <div  class="content" :class="item.IsSelected ? 'active' : ''">
                     <div @click="openGame(item)" :style="{ height: coverHeight + 'px' }" class="cover">
                         <el-image style="width:100%;height: 100%;" fit="fill" :src="item.Cover"></el-image>
                     </div>
@@ -52,13 +53,13 @@
         </div>
 
         <el-drawer v-model="visiableAddGame" :title="selectedGame?.GameID == 0 ? '添加游戏' : '修改游戏'"
-            destroy-on-close="true" direction="rtl" size="800" :close-on-click-modal="false"
+            :destroy-on-close="true" direction="rtl" size="800" :close-on-click-modal="false"
             :close-on-press-escape="false">
             <AddGameComponent @success="modeifyGameSuccess" :game="selectedGame">
             </AddGameComponent>
         </el-drawer>
 
-        <el-dialog @close="openGameClosed" @open="openGameOpened" title="启动游戏" :destroy-on-close="true"
+        <el-dialog draggable @close="openGameClosed" @open="openGameOpened" title="启动游戏" :destroy-on-close="true"
             v-model="visiableStartGame" width="500" align-center :close-on-click-modal="false"
             :close-on-press-escape="false">
             <div style="height: 300px;display: flex;flex-direction: column;">
@@ -83,7 +84,6 @@ import { ElMessage, ElMessageBox } from 'element-plus';
 const remote = require('@electron/remote')
 import db from '@/src/tools/db';
 import AddGameComponent from "./AddGame.vue"
-const { exec, spawn } = require('child_process');
 const path = require('path');
 import { Delete, Write, Play, PlayOne } from "@icon-park/vue-next"
 
@@ -99,7 +99,7 @@ async function getGames() {
         const result = await db.getGames(searchContent.value)
         if (result) {
             games.value = []
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 1; i++) {
                 result.forEach(f => {
                     games.value.push(JSON.parse(JSON.stringify(f)))
                 })
@@ -114,7 +114,7 @@ async function getGames() {
 
 //#region 手柄
 
-enum CurrentPage{
+enum CurrentPage {
     MAIN,
     OPENGAMECONFIRM
 }
@@ -265,7 +265,7 @@ function listenGamepad() {
                                 break
                             case 0:
                                 if (!aStatus) {
-                                    console.log("pressed A " + i.toString() + " " + pct,currentPage);
+                                    console.log("pressed A " + i.toString() + " " + pct, currentPage);
                                     switch (currentPage) {
                                         case CurrentPage.MAIN:
                                             openGame(games.value[index])
@@ -400,7 +400,12 @@ function listenGamepad() {
                     games.value[i].IsSelected = false
                 }
             }
-            containerElement.value.scrollTop = Math.floor(index / 6) * coverHeight.value
+            let currentItemOffset = (Math.floor(index / 5)+1) * (colElement.value[0].clientHeight)
+            if (currentItemOffset > containerElement.value.clientHeight) {
+                containerElement.value.scrollTop = currentItemOffset-(colElement.value[0].clientHeight)
+            }else{
+                containerElement.value.scrollTop=0
+            }
         }
 
         window.requestAnimationFrame(updateStatus);
@@ -454,45 +459,26 @@ const selectedOpenGame = ref<Game>()
 
 function openGameClosed() {
     currentPage = CurrentPage.MAIN
-    visiableStartGame.value = false
-    console.log("openGameClosed")
 }
 
 function openGameOpened() {
-    currentPage =CurrentPage.OPENGAMECONFIRM
+    currentPage = CurrentPage.OPENGAMECONFIRM
 }
 
 function cancelOpenGame() {
     visiableStartGame.value = false
 }
 
-function confirmOpenGame() {
+async function confirmOpenGame() {
     visiableStartGame.value = false
     if (selectedOpenGame.value) {
-        const command = path.basename(selectedOpenGame.value.APP);
-        const args = [];
-
-        const workingDirectory = path.dirname(selectedOpenGame.value.APP);
-        const child = spawn(command, args, {
-            cwd: workingDirectory,
-            stdio: ['inherit', 'pipe', 'pipe']
-        });
-
-        child.stdout.on('data', (data) => {
-            console.log(`stdout: ${data}`);
-        });
-
-        child.stderr.on('data', (data) => {
-            console.error(`stderr: ${data}`);
-        });
-
-        child.on('close', (code) => {
-            console.log(`child process exited with code ${code}`);
-        });
-
-        child.on('error', (code) => {
-            ElMessage.error(code.toString())
-        })
+        const command = selectedOpenGame.value.APP;
+        const dir = path.dirname(selectedOpenGame.value.APP);
+        try {
+            await remote.shell.openExternal(command, { workingDirectory: dir })
+        } catch (ex: any) {
+            ElMessage.error(ex.toString())
+        }
     }
 }
 

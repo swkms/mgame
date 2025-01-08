@@ -65,7 +65,7 @@ function min() {
 
 <style lang="scss">
 .window_bar {
-    height: 50px;
+    height: 35px;
     display: flex;
 
     .title {
